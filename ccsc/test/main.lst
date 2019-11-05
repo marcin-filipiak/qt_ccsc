@@ -1,0 +1,193 @@
+CCS PCM C Compiler, Version 5.025, 5967               17-lip-18 20:48
+
+               Filename:   Z:\home\kolgreen\Dropbox\Projekty\programowanie\Qt\CCSC\ccsc\test\main.lst
+
+               ROM used:   124 words (3%)
+                           Largest free fragment is 2048
+               RAM used:   8 (2%) at main() level
+                           9 (2%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   02D
+0003:  NOP
+.................... #include <16F87.h> 
+.................... //////////// Standard Header file for the PIC16F87 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F87 
+....................  
+.................... #list 
+....................  
+....................  
+.................... #FUSES NOWDT                   //No Watch Dog Timer 
+....................  
+.................... #use delay(crystal=4MHz) 
+0004:  MOVLW  23
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETURN
+0019:  MOVLW  12
+001A:  SUBWF  24,F
+001B:  BTFSS  03.0
+001C:  GOTO   02C
+001D:  MOVLW  24
+001E:  MOVWF  04
+001F:  BCF    03.7
+0020:  MOVLW  FC
+0021:  ANDWF  00,F
+0022:  BCF    03.0
+0023:  RRF    00,F
+0024:  RRF    00,F
+0025:  MOVF   00,W
+0026:  BTFSC  03.2
+0027:  GOTO   02C
+0028:  GOTO   02A
+0029:  NOP
+002A:  DECFSZ 00,F
+002B:  GOTO   029
+002C:  RETURN
+....................  
+.................... #define LEDG PIN_A2 
+.................... #define LEDR PIN_A3 
+....................  
+.................... void main() 
+002D:  MOVF   03,W
+002E:  ANDLW  1F
+002F:  MOVWF  03
+0030:  MOVLW  07
+0031:  BSF    03.5
+0032:  MOVWF  1C
+0033:  BCF    03.7
+0034:  BCF    03.5
+0035:  CLRF   22
+0036:  MOVLW  C8
+0037:  MOVWF  21
+.................... { 
+....................  
+.................... unsigned int16 czas = 200; 
+....................  
+....................    while(1==1) 
+....................    { 
+....................     
+....................       if (input(PIN_A1) == true){ 
+0038:  BSF    03.5
+0039:  BSF    05.1
+003A:  BCF    03.5
+003B:  BTFSS  05.1
+003C:  GOTO   04E
+....................          if (czas<1000){ 
+003D:  MOVF   22,W
+003E:  SUBLW  03
+003F:  BTFSS  03.0
+0040:  GOTO   04E
+0041:  BTFSS  03.2
+0042:  GOTO   047
+0043:  MOVF   21,W
+0044:  SUBLW  E7
+0045:  BTFSS  03.0
+0046:  GOTO   04E
+....................            czas = czas + 2;         
+0047:  MOVLW  02
+0048:  ADDWF  21,F
+0049:  BTFSC  03.0
+004A:  INCF   22,F
+....................            delay_ms(100); 
+004B:  MOVLW  64
+004C:  MOVWF  23
+004D:  CALL   004
+....................          } 
+....................       } 
+....................      if (input(PIN_A0) == true){ 
+004E:  BSF    03.5
+004F:  BSF    05.0
+0050:  BCF    03.5
+0051:  BTFSS  05.0
+0052:  GOTO   062
+....................           if (czas>0){ 
+0053:  MOVF   21,F
+0054:  BTFSS  03.2
+0055:  GOTO   059
+0056:  MOVF   22,F
+0057:  BTFSC  03.2
+0058:  GOTO   062
+....................                   czas = czas - 2; 
+0059:  MOVLW  02
+005A:  SUBWF  21,F
+005B:  MOVLW  00
+005C:  BTFSS  03.0
+005D:  MOVLW  01
+005E:  SUBWF  22,F
+....................                   delay_ms(100); 
+005F:  MOVLW  64
+0060:  MOVWF  23
+0061:  CALL   004
+....................           } 
+....................       } 
+....................     
+....................       delay_us(czas); 
+0062:  MOVF   22,W
+0063:  MOVWF  23
+0064:  INCF   23,F
+0065:  DECF   23,F
+0066:  BTFSC  03.2
+0067:  GOTO   06C
+0068:  MOVLW  FF
+0069:  MOVWF  24
+006A:  CALL   019
+006B:  GOTO   065
+006C:  MOVF   21,W
+006D:  MOVWF  24
+006E:  CALL   019
+....................       output_high(LEDG); 
+006F:  BSF    03.5
+0070:  BCF    05.2
+0071:  BCF    03.5
+0072:  BSF    05.2
+....................       delay_ms(2); 
+0073:  MOVLW  02
+0074:  MOVWF  23
+0075:  CALL   004
+....................       output_low(LEDG); 
+0076:  BSF    03.5
+0077:  BCF    05.2
+0078:  BCF    03.5
+0079:  BCF    05.2
+007A:  GOTO   038
+....................  
+....................    } 
+....................     
+....................  
+.................... } 
+007B:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F61   NOWDT PUT XT MCLR BROWNOUT NOLVP NOCPD NOWRT NODEBUG CCPB0 NOPROTECT
+   Word  2: 3FFF   FCMEN IESO

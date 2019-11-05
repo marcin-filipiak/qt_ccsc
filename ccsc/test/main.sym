@@ -1,0 +1,53 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+021-022 main.czas
+023     @delay_ms1.P1
+023     main.@SCRATCH1
+024     @delay_us1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @delay_ms1
+000019  @delay_us1
+00002D  main
+00002D  @cinit1
+000033  @cinit2
+
+Project Directory:
+    Z:\home\kolgreen\Dropbox\Projekty\programowanie\Qt\CCSC\ccsc\test\
+
+Project Files:
+    main.c                                                  [11-wrz-15 15:14  CRC=30F92704]
+    C:\Program Files (x86)\PICC\Devices\16F87.h             [18-kwi-14 16:56  CRC=AA0E7336]
+
+Source signature=85160D70
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC16F87
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    Errors:      main.err
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/eCOD:  main.cod
+    Project:     main.ccspjt

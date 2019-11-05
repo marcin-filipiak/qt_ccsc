@@ -1,0 +1,39 @@
+#include <16F877.h>
+
+#FUSES NOWDT                   //No Watch Dog Timer
+
+#use delay(crystal=4MHz)
+
+#define LEDG PIN_A2
+#define LEDR PIN_A3
+
+void main()
+{
+
+unsigned int16 czas = 200;
+
+   while(1==1)
+   {
+   
+      if (input(PIN_A1) == true){
+         if (czas<1000){
+           czas = czas + 2;        
+           delay_ms(100);
+         }
+      }
+     if (input(PIN_A0) == true){
+          if (czas>0){
+                  czas = czas - 2;
+                  delay_ms(100);
+          }
+      }
+   
+      delay_ms(czas);
+      output_high(LEDG);
+      delay_ms(2);
+      output_low(LEDG);
+
+   }
+   
+
+}
